@@ -54,13 +54,7 @@ Manual cURL tests were executed for:
 
 Automated tests and CI are pending (recommended next step).
 
-## Remaining / Next steps
-- Add ERD visual export (PNG/SVG) and presentation materials
-- Integrate Swagger/OpenAPI docs (`/api/docs`)
-- Add automated tests and GitHub Actions CI
-- Deploy to a hosting provider (Render / Railway / Heroku)
-- Add job categories, search/filtering, and performance optimizations
 
 ---
 
-If you want, I can add Swagger docs, generate a PNG for the ERD, or create automated tests next. ✅
+
