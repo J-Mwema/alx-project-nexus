@@ -29,9 +29,12 @@ INSTALLED_APPS = [
     # Third-party
     'rest_framework',
     'rest_framework.authtoken',
+    'rest_framework_simplejwt.token_blacklist',
 
     # Local apps
     'users',
+    'jobs',
+    'applications',
 ]
 
 MIDDLEWARE = [
@@ -122,9 +125,10 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-        'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+        'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),
         'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
         'AUTH_HEADER_TYPES': ('Bearer',),
+        'BLACKLIST_AFTER_ROTATION': True,
 }
 
 AUTH_USER_MODEL = 'users.User'

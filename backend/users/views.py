@@ -1,9 +1,17 @@
 from rest_framework import generics
+from rest_framework.permissions import AllowAny
+from rest_framework_simplejwt.views import TokenObtainPairView
+
 from .models import User
-from .serializers import UserRegistrationSerializer
+from .serializers import UserRegistrationSerializer, LoginSerializer
 
 
 class UserRegistrationView(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserRegistrationSerializer
-    permission_classes = []
+    permission_classes = [AllowAny]
+
+
+class LoginView(TokenObtainPairView):
+    serializer_class = LoginSerializer
+
