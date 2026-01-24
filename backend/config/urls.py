@@ -20,5 +20,7 @@ urlpatterns = [
     path('api/auth/register/', UserRegistrationView.as_view(), name="register"),
 
 
-    path('api/jobs', include('jobs.urls')),
+    path('api/jobs/', include('jobs.urls')),
+
+    path('api/applications/', include('applications.urls')),
 ]

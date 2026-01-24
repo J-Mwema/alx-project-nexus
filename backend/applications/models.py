@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from jobs.models import Job
+from users.models import User
 
 User = settings.AUTH_USER_MODEL
 
