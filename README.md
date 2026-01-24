@@ -1,11 +1,12 @@
 # Job Board Platform — Backend (Project Nexus)
 
 ## Status
-- Core models implemented: `User` (custom), `Job`, `Application`
-- JWT authentication (SimpleJWT) with register/login/refresh endpoints
-- Jobs CRUD endpoints (list/create/retrieve/update/delete)
-- Applications endpoints (apply, update status)
-- Manual end-to-end tests executed locally (register, login, create job, apply, accept)
+- ✅ Core models implemented: `User` (custom), `Job`, `Application`
+- ✅ JWT authentication (SimpleJWT) with register/login/refresh endpoints
+- ✅ Jobs CRUD endpoints (list/create/retrieve/update/delete)
+- ✅ Applications endpoints (apply, update status)
+- ✅ Manual end-to-end tests executed locally (register, login, create job, apply, accept)
+
 
 ## Project Summary
 This repository implements the backend for a Job Board platform using Django and Django REST Framework. It supports role-based access control (Admin / Employer / Job Seeker), job posting and management, and applications with status tracking.
@@ -52,9 +53,11 @@ Manual cURL tests were executed for:
 - Applying as a job seeker
 - Accepting an application as the employer
 
-Automated tests and CI are pending (recommended next step).
 
 
----
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> chore: format README bullets
