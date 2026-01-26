@@ -2,7 +2,7 @@ from rest_framework import generics, permissions
 from .models import Application
 from .serializers import (
     ApplicationCreateSerializer,
-    ApplicatioinStatusUpdateSerializer,
+    ApplicationStatusUpdateSerializer,
 )
 from .permissions import IsEmployerAndJobOwner
 from users.models import User
@@ -17,5 +17,5 @@ class ApplicationCreateView(generics.CreateAPIView):
 
 class ApplicationStatusUpdateView(generics.UpdateAPIView):
     queryset = Application.objects.all()
-    serializer_class = ApplicatioinStatusUpdateSerializer
+    serializer_class = ApplicationStatusUpdateSerializer
     permission_classes = [IsEmployerAndJobOwner]

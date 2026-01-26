@@ -7,7 +7,7 @@ class ApplicationCreateSerializer(serializers.ModelSerializer):
         fields = ('id', 'job', 'cover_letter')
         read_only_fields = ('id',)
 
-class ApplicatioinStatusUpdateSerializer(serializers.ModelSerializer):
+class ApplicationStatusUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Application
         fields = ('status',)

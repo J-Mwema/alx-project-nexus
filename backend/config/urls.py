@@ -9,6 +9,19 @@ from rest_framework_simplejwt.views import (
 from django.urls import path, include
 from users.views import UserRegistrationView
 
+from rest_framework import permissions
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
+
+schema_view = get_schema_view(
+    openapi.Info(
+        title="Job Board API",
+        default_version='v1',
+        description="API documentation for Job Board backend",
+    ),
+    public=True,
+    permission_classes=(permissions.AllowAny,),
+)
 
 
 urlpatterns = [
@@ -23,4 +36,8 @@ urlpatterns = [
     path('api/jobs/', include('jobs.urls')),
 
     path('api/applications/', include('applications.urls')),
+
+    # Swagger/OpenAPI
+    path('api/docs/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    path('api/docs/redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
 ]
