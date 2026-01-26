@@ -7,7 +7,11 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 from django.urls import path, include
-from users.views import UserRegistrationView
+
+try:
+    from users.views import UserRegistrationView
+except Exception:
+    UserRegistrationView = None
 
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
@@ -30,14 +34,36 @@ urlpatterns = [
     # JWT endpoints
     path('api/auth/login/', TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path('api/auth/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    path('api/auth/register/', UserRegistrationView.as_view(), name="register"),
+]
 
+# optional registration endpoint (only if available)
+if UserRegistrationView is not None:
+    urlpatterns += [
+        path('api/auth/register/', UserRegistrationView.as_view(), name="register"),
+    ]
 
-    path('api/jobs/', include('jobs.urls')),
+# Jobs routes (only add if jobs app is available)
+try:
+    import jobs.urls
+except Exception:
+    pass
+else:
+    urlpatterns += [
+        path('api/jobs/', include('jobs.urls')),
+    ]
 
-    path('api/applications/', include('applications.urls')),
+# Applications routes (only add if applications app is available)
+try:
+    import applications.urls
+except Exception:
+    pass
+else:
+    urlpatterns += [
+        path('api/applications/', include('applications.urls')),
+    ]
 
-    # Swagger/OpenAPI
+# Swagger/OpenAPI
+urlpatterns += [
     path('api/docs/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('api/docs/redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
 ]
