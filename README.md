@@ -90,11 +90,14 @@ The database schema is fully normalized and designed for scalability.
 - Many‑to‑many (Jobs ↔ Categories)
 - One‑to‑many (Job → Applications)
 
-### 📌 ERD Submission
 
-ERD designed using Lucidchart / Draw.io
+### 📌 ERD (External)
 
-Shared via Google Docs with viewing permissions
+The Entity Relationship Diagram (ERD) was designed using Draw.io  
+and is shared externally via Google Docs / Google Slides as part of the project presentation.
+
+This approach mirrors real-world workflows where design artifacts  
+are maintained separately from the codebase.
 
 ---
 
