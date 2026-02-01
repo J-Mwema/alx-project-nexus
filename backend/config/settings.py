@@ -41,7 +41,8 @@ except Exception:
     # drf_spectacular not installed in the current environment
     pass
 
-    # Local apps
+# Local apps
+INSTALLED_APPS += [
     'users',
     'jobs',
     'applications',
