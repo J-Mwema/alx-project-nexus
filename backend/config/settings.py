@@ -29,9 +29,17 @@ INSTALLED_APPS = [
     # Third-party
     'rest_framework',
     'django_filters',
-    'drf_spectacular',
     'rest_framework.authtoken',
     'rest_framework_simplejwt.token_blacklist',
+]
+
+# Optional third-party apps added only when installed to avoid import errors in minimal environments
+try:
+    import drf_spectacular  # noqa: F401
+    INSTALLED_APPS.append('drf_spectacular')
+except Exception:
+    # drf_spectacular not installed in the current environment
+    pass
 
     # Local apps
     'users',
