@@ -59,7 +59,7 @@ Automated tests and CI are pending (recommended next step).
 - Integrate Swagger/OpenAPI docs (`/api/docs`)
 - Add automated tests and GitHub Actions CI
 - Deploy to a hosting provider (Render / Railway / Heroku)
-- Add job categories, search/filtering, and performance optimizations
+- ✅ Job categories & job types, search/filtering, and indexing implemented
 
 ---
 
