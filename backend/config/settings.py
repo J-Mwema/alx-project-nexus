@@ -72,11 +72,15 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 # Database
 import os
-import dj_database_url
+
+try:
+    import dj_database_url
+except Exception:
+    dj_database_url = None
 
 DATABASE_URL = os.getenv('DATABASE_URL')
 
-if DATABASE_URL:
+if DATABASE_URL and dj_database_url:
     DATABASES = {
         'default': dj_database_url.config(default=DATABASE_URL, conn_max_age=600)
     }
