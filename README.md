@@ -60,6 +60,7 @@ Automated tests and CI are pending (recommended next step).
 - Add automated tests and GitHub Actions CI
 - Deploy to a hosting provider (Render / Railway / Heroku)
 - ✅ Job categories & job types, search/filtering, and indexing implemented
+- ✅ Swagger/OpenAPI docs available at `/api/docs` (drf-spectacular)
 
 ---
 
