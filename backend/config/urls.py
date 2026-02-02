@@ -7,25 +7,12 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 from django.urls import path, include
-
+from users.views import UserRegistrationView
 try:
-    from users.views import UserRegistrationView
+    from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, SpectacularRedocView
+    SPECTACULAR_AVAILABLE = True
 except Exception:
-    UserRegistrationView = None
-
-from rest_framework import permissions
-from drf_yasg.views import get_schema_view
-from drf_yasg import openapi
-
-schema_view = get_schema_view(
-    openapi.Info(
-        title="Job Board API",
-        default_version='v1',
-        description="API documentation for Job Board backend",
-    ),
-    public=True,
-    permission_classes=(permissions.AllowAny,),
-)
+    SPECTACULAR_AVAILABLE = False
 
 
 urlpatterns = [
@@ -34,36 +21,17 @@ urlpatterns = [
     # JWT endpoints
     path('api/auth/login/', TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path('api/auth/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/auth/register/', UserRegistrationView.as_view(), name="register"),
+
+
+    path('api/jobs/', include('jobs.urls')),
+
+    path('api/applications/', include('applications.urls')),
 ]
 
-# optional registration endpoint (only if available)
-if UserRegistrationView is not None:
+if SPECTACULAR_AVAILABLE:
     urlpatterns += [
-        path('api/auth/register/', UserRegistrationView.as_view(), name="register"),
+        path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
+        path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+        path('api/docs/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
     ]
-
-# Jobs routes (only add if jobs app is available)
-try:
-    import jobs.urls
-except Exception:
-    pass
-else:
-    urlpatterns += [
-        path('api/jobs/', include('jobs.urls')),
-    ]
-
-# Applications routes (only add if applications app is available)
-try:
-    import applications.urls
-except Exception:
-    pass
-else:
-    urlpatterns += [
-        path('api/applications/', include('applications.urls')),
-    ]
-
-# Swagger/OpenAPI
-urlpatterns += [
-    path('api/docs/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-    path('api/docs/redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
-]

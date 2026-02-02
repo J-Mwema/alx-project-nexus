@@ -8,12 +8,13 @@ class User(AbstractUser):
 
     class Role(models.TextChoices):
         ADMIN = 'ADMIN', 'Admin'
-        USER = 'USER', 'User'
+        EMPLOYER = 'EMPLOYER', 'Employer'
+        JOBSEEKER = 'JOBSEEKER', 'Job Seeker'
 
     role = models.CharField(
         max_length=10,
         choices=Role.choices,
-        default=Role.USER
+        default=Role.JOBSEEKER
     )
 
     def __str__(self):
