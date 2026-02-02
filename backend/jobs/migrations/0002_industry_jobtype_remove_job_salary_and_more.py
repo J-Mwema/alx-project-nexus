@@ -41,14 +41,6 @@ class Migration(migrations.Migration):
             model_name='job',
             index=models.Index(fields=['status'], name='jobs_job_status_7d017a_idx'),
         ),
-        migrations.AddIndex(
-            model_name='job',
-            index=models.Index(fields=['industry'], name='jobs_job_industr_992fec_idx'),
-        ),
-        migrations.AddIndex(
-            model_name='job',
-            index=models.Index(fields=['job_type'], name='jobs_job_job_typ_010e9a_idx'),
-        ),
         migrations.AddField(
             model_name='job',
             name='industry',
@@ -58,5 +50,13 @@ class Migration(migrations.Migration):
             model_name='job',
             name='job_type',
             field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='jobs', to='jobs.jobtype'),
+        ),
+        migrations.AddIndex(
+            model_name='job',
+            index=models.Index(fields=['industry'], name='jobs_job_industr_992fec_idx'),
+        ),
+        migrations.AddIndex(
+            model_name='job',
+            index=models.Index(fields=['job_type'], name='jobs_job_job_typ_010e9a_idx'),
         ),
     ]

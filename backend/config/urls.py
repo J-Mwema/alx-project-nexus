@@ -8,7 +8,11 @@ from rest_framework_simplejwt.views import (
 )
 from django.urls import path, include
 from users.views import UserRegistrationView
-from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, SpectacularRedocView
+try:
+    from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, SpectacularRedocView
+    SPECTACULAR_AVAILABLE = True
+except Exception:
+    SPECTACULAR_AVAILABLE = False
 
 
 urlpatterns = [
@@ -23,9 +27,11 @@ urlpatterns = [
     path('api/jobs/', include('jobs.urls')),
 
     path('api/applications/', include('applications.urls')),
-
-    # OpenAPI / Swagger
-    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
-    path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
-    path('api/docs/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
 ]
+
+if SPECTACULAR_AVAILABLE:
+    urlpatterns += [
+        path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
+        path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+        path('api/docs/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
+    ]
