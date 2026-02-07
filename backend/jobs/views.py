@@ -1,4 +1,5 @@
 from rest_framework import generics, permissions, filters
+from django.db.models import Q
 from django_filters.rest_framework import DjangoFilterBackend
 from .models import Job, Industry, JobType
 from .serializers import (
@@ -10,9 +11,15 @@ from .permissions import IsEmployer, IsJobOwner
 
 
 class JobListCreateView(generics.ListCreateAPIView):
-    queryset = Job.objects.filter(status='OPEN').select_related('employer', 'industry', 'job_type')
     serializer_class = JobSerializer
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
+
+    def get_queryset(self):
+        queryset = Job.objects.select_related('employer', 'industry', 'job_type')
+        if self.request.user.is_authenticated and self.request.user.role == 'EMPLOYER':
+            return queryset.filter(Q(status='OPEN') | Q(employer=self.request.user))
+        return queryset.filter(status='OPEN')
+
     filterset_fields = ['industry', 'job_type', 'location', 'status']
     search_fields = ['title', 'description', 'location']
     ordering_fields = ['created_at', 'updated_at', 'title']
