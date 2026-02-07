@@ -14,7 +14,7 @@ class IsEmployer(BasePermission):
             and request.user.role == 'EMPLOYER'
         )
 
-class IsJobSeeeker(BasePermission):
+class IsJobSeeker(BasePermission):
     def has_permission(self, request, view):
         return (
             request.user.is_authenticated
