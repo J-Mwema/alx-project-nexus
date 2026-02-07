@@ -48,6 +48,25 @@ A robust backend system for a Job Board platform allowing Employers to post jobs
 *   **Application Tracking**: Workflow for applying to jobs and tracking application status.
 *   **API Documentation**: Auto-generated Swagger UI.
 
+## 🌍 Live Deployment
+**Base URL**: `https://alx-project-nexus-api-5iyl.onrender.com`
+
+**Swagger Docs**: [View API Documentation](https://alx-project-nexus-api-5iyl.onrender.com/api/docs/)
+
+### 🔑 Sample Credentials
+| Role | Email | Password |
+| :--- | :--- | :--- |
+| **Employer** | `employer@example.com` | `testpass123` |
+| **Job Seeker** | `jobseeker@example.com` | `testpass123` |
+
+### ⚡ Example Usage (cURL)
+**Login to get Token:**
+```bash
+curl -X POST https://alx-project-nexus-api-5iyl.onrender.com/api/token/ \
+     -H "Content-Type: application/json" \
+     -d '{"email": "jobseeker@example.com", "password": "testpass123"}'
+```
+
 ## Tech Stack
 *   **Framework**: Django + Django REST Framework
 *   **Database**: PostgreSQL
