@@ -22,6 +22,7 @@ class Job(models.Model):
     class Status(models.TextChoices):
         DRAFT = 'DRAFT', 'Draft'
         OPEN = 'OPEN', 'Open'
+        REVIEWED = 'REVIEWED', 'Reviewed'
         CLOSED = 'CLOSED', 'Closed'
 
 
